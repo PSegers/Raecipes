@@ -1,0 +1,6 @@
+com\gmail\segers1\pieterjan\raecipes\commands\BaseCommand.class
+com\gmail\segers1\pieterjan\raecipes\commands\FirstnameCommand.class
+com\gmail\segers1\pieterjan\raecipes\commands\LastnameCommand.class
+com\gmail\segers1\pieterjan\raecipes\Main.class
+com\gmail\segers1\pieterjan\raecipes\Raecipes.class
+com\gmail\segers1\pieterjan\raecipes\api\ServiceNickname.class

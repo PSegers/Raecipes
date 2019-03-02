@@ -1,0 +1,20 @@
+reacipes.*:
+  description: Allows use of all commands.
+  default: false
+  children:
+    reacipes.all: true
+
+reacipes.all:
+  description: Allows use of all commands.
+  default: false
+  children:
+    reacipes.firstname: true
+    reacipes.lastname: true
+
+reacipes.firstname:
+  description: Allows use of the `/firstname` command.
+  default: false
+
+reacipes.lastname:
+  description: Allows use of the `/lastname` command.
+  default: false
