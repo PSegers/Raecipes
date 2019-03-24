@@ -14,20 +14,35 @@ public class ServiceNickname {
 
     // Invoked when a player joins the server.
     public static void setNickname(Player player) {
+        setNickname(player, true);
+    }
+
+    public static void setNickname(Player player, boolean full) {
         // Fetch the prefix and suffix
         String prefix = Raecipes.getPlayerConfig().getPlayerPrefix(player.getUniqueId().toString());
         String suffix = Raecipes.getPlayerConfig().getPlayerSuffix(player.getUniqueId().toString());
 
         // Create a nickname of the prefix and suffix
-        String nickname = String.join(" ", new String[] {prefix, suffix}).trim();
-        player.setDisplayName(nickname);
-        player.setPlayerListName(nickname);
+        if (!prefix.isEmpty()|| !suffix.isEmpty()){
+            String nickname = String.join(" ", new String[] {prefix, suffix}).trim();
+            player.setDisplayName(nickname);
+            player.setPlayerListName(nickname);
 
-        Raecipes.getMultiScoreboard().setPlayerPrefix(player, prefix);
-        Raecipes.getMultiScoreboard().setPlayerSuffix(player, suffix);
+
+            if (full) {
+                Raecipes.getMultiScoreboard().setPlayerPrefix(player, prefix);
+                Raecipes.getMultiScoreboard().setPlayerSuffix(player, suffix);
+            }
+
+        } else {
+            player.setDisplayName(player.getName());
+            player.setPlayerListName(player.getName());
+            Raecipes.getMultiScoreboard().resetPlayer(player);
+        }
     }
 
-    public static void setPrefix(Player player, String prefix) {
+
+        public static void setPrefix(Player player, String prefix) {
        if (prefix.length() > 12){
            player.sendMessage("A first name cannot be over 12 characters long.");
        } else {
@@ -61,9 +76,10 @@ public class ServiceNickname {
 
     public static void removeNickname(Player player) {
         // Remove a player entirely from the config and reset their nickname.
-        Raecipes.getMultiScoreboard().setPlayerPrefix(player, "");
-        Raecipes.getMultiScoreboard().setPlayerSuffix(player, "");
         Raecipes.getPlayerConfig().removeEntry(player.getUniqueId().toString());
+        setNickname(player);
+        player.sendMessage("Successfully reset name.");
+
     }
 
 }

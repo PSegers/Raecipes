@@ -2,11 +2,13 @@ package com.gmail.segers1.pieterjan.raecipes.listener;
 
 import com.gmail.segers1.pieterjan.raecipes.Raecipes;
 import com.gmail.segers1.pieterjan.raecipes.api.ServiceNickname;
+import com.gmail.segers1.pieterjan.raecipes.commands.FirstnameCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -39,5 +41,15 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerQuit(PlayerQuitEvent event) {
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        /*
+        We must add this for Essentials specifically, as Essentials will otherwise overwrite the setNickname command
+        entirely with its own mumbojumbo.
+         */
+        Player player = event.getPlayer();
+        ServiceNickname.setNickname(player, false);
     }
 }

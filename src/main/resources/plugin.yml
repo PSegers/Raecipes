@@ -10,17 +10,33 @@ commands:
      usage: /firstname <name>
      aliases:
        - fn
+       - first
 #     permission: raecipes.firstname
   lastname:
      description: Set the lastname of your character.
      usage: /lastname <name>
      aliases:
        - ln
+       - last
 #     permission: raecipes.lastname
+  resetname:
+    description: Resets the name of your character to your IGN.
+    usage: /resetname
+    aliases:
+      - rn
+  #     permission: raecipes.resetname
   colors:
     description: A handy tooltip of all the colours!
     usage: /colors
+    aliases:
+      - colours
 #     permission: raecipes.colors
+  raecipes:
+    description: All admin commands.
+    usage: /raecipes
+    aliases:
+      - rae
+#     permission: raecipes.raecipes
 
 permissions:
   raecipes.*:
@@ -34,6 +50,17 @@ permissions:
     children:
       raecipes.firstname: true
       raecipes.lastname: true
+      raecipes.colors: true
+      raecipes.resetname: true
+      raecipes.raecipes: true
+  raecipes.member:
+    description: A collection of basic commands.
+    default: false
+    children:
+      raecipes.firstname: true
+      raecipes.lastname: true
+      raecipes.colors: true
+      raecipes.resetname: true
   raecipes.firstname:
     description: Allows use of the `/firstname` command.
     default: false
@@ -42,4 +69,7 @@ permissions:
     default: false
   raecipes.colors:
     description: Allows use of the `/color` command.
+    default: false
+  raecipes.resetname:
+    description: Allows use of the `/resetname` command.
     default: false

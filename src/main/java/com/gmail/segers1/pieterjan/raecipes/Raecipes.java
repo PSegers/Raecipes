@@ -1,7 +1,6 @@
 package com.gmail.segers1.pieterjan.raecipes;
 
-import com.gmail.segers1.pieterjan.raecipes.commands.FirstnameCommand;
-import com.gmail.segers1.pieterjan.raecipes.commands.LastnameCommand;
+import com.gmail.segers1.pieterjan.raecipes.commands.*;
 import com.gmail.segers1.pieterjan.raecipes.engine.config.Config;
 import com.gmail.segers1.pieterjan.raecipes.engine.config.PlayerConfig;
 import com.gmail.segers1.pieterjan.raecipes.engine.MultiScoreboard;
@@ -45,6 +44,9 @@ public class Raecipes extends JavaPlugin {
         // Initiate all the commands
         getCommand("firstname").setExecutor(new FirstnameCommand(this));
         getCommand("lastname").setExecutor(new LastnameCommand(this));
+        getCommand("resetname").setExecutor(new ResetnameCommand(this));
+        getCommand("colors").setExecutor(new ColorsCommand(this));
+        getCommand("raecipes").setExecutor(new AdminCommand(this));
     }
 
     @Override

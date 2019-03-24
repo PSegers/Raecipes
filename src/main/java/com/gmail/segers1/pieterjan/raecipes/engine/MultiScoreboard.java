@@ -21,6 +21,15 @@ public class MultiScoreboard {
         team.setSuffix(String.format("] %s", suffix));
     }
 
+    public void resetPlayer(Player player){
+        Scoreboard board = player.getScoreboard();
+
+        Team team = getTeam(board, player.getName());
+        team.addEntry(player.getName());
+        team.setSuffix("");
+        team.setPrefix("");
+    }
+
     public void unregisterPlayerTeam(Player player) {
         Scoreboard board = player.getScoreboard();
         Team team;
