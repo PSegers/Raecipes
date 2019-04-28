@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ColorsCommand extends BaseCommand {
+    private final String permission = "raecipes.colors";
+
     public ColorsCommand(Raecipes plugin) {
         super(plugin);
     }
@@ -41,5 +43,10 @@ public class ColorsCommand extends BaseCommand {
             player.sendMessage(String.format("&k - %sScrambled", ChatColor.MAGIC));
             player.sendMessage("==================");
         }
+    }
+
+    @Override
+    boolean hasPermission(CommandSender sender) {
+        return sender.hasPermission(permission) || sender.hasPermission(getAllPermission());
     }
 }

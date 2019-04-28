@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class LastnameCommand extends BaseCommand {
-    private final String permission = "reacipes.lastname";
+    private final String permission = "raecipes.lastname";
 
     public LastnameCommand(Raecipes plugin) {
         super(plugin);
@@ -30,5 +30,10 @@ public class LastnameCommand extends BaseCommand {
     static void command(Player player, String[] args) {
         String suffix = String.join(" ", args);
         ServiceNickname.setSuffix(player, suffix);
+    }
+
+    @Override
+    boolean hasPermission(CommandSender sender) {
+        return sender.hasPermission(permission) || sender.hasPermission(getAllPermission());
     }
 }

@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ResetnameCommand extends BaseCommand {
-    private final String permission = "reacipes.removename";
+    private final String permission = "raecipes.resetname";
 
     public ResetnameCommand(Raecipes plugin) {
         super(plugin);
@@ -31,5 +31,11 @@ public class ResetnameCommand extends BaseCommand {
 
     static void command(Player player, String[] args){
         ServiceNickname.removeNickname(player);
+    }
+
+    @Override
+    boolean hasPermission(CommandSender sender) {
+        System.out.println(sender.getEffectivePermissions());
+        return sender.hasPermission(permission) || sender.hasPermission(getAllPermission());
     }
 }

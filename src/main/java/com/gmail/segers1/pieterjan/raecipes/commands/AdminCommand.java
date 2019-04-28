@@ -10,6 +10,8 @@ import java.util.Arrays;
 import static com.gmail.segers1.pieterjan.raecipes.util.PlayerUtils.findPlayer;
 
 public class AdminCommand extends BaseCommand {
+    private final String permission = "raecipes.admin";
+
     private ArrayList<String> firstNameCommands = new ArrayList<String>() {{
         add("firstname");
         add("fn");}};
@@ -57,5 +59,10 @@ public class AdminCommand extends BaseCommand {
         } else if (resetNameCommands.contains(commandName.toLowerCase())) {
             ResetnameCommand.command(player, args);
         }
+    }
+
+    @Override
+    boolean hasPermission(CommandSender sender) {
+        return sender.hasPermission(permission) || sender.hasPermission(getAllPermission());
     }
 }
