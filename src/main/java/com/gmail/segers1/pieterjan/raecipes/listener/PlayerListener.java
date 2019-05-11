@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
@@ -33,6 +34,7 @@ public class PlayerListener implements Listener {
 
         // Set the players nickname upon joining
         ServiceNickname.setNickname(player);
+        player.setFoodLevel(18);
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -51,5 +53,11 @@ public class PlayerListener implements Listener {
          */
         Player player = event.getPlayer();
         ServiceNickname.setNickname(player, false);
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onFoodLevelChange(FoodLevelChangeEvent event) {
+        Player player = (Player) event.getEntity();
+        player.setFoodLevel(18);
     }
 }

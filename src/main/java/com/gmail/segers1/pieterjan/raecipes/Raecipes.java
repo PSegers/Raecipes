@@ -5,6 +5,7 @@ import com.gmail.segers1.pieterjan.raecipes.engine.config.Config;
 import com.gmail.segers1.pieterjan.raecipes.engine.config.PlayerConfig;
 import com.gmail.segers1.pieterjan.raecipes.engine.MultiScoreboard;
 import com.gmail.segers1.pieterjan.raecipes.listener.PlayerListener;
+import com.gmail.segers1.pieterjan.raecipes.runnable.HungerRunnable;
 import net.milkbowl.vault.chat.Chat;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -37,6 +38,9 @@ public class Raecipes extends JavaPlugin {
         setupVaultChat();
 
         multiScoreboard = new MultiScoreboard();
+
+        // Register Runnables
+//        new HungerRunnable(this).runTaskTimer(this, 0L, 20L);
 
         // Register Listener
         new PlayerListener(this);
